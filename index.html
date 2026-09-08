@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kath. Kita St. Marien</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="content-loading">
+    <header>
+      <div class="container nav">
+        <a href="#home" class="logo" aria-label="Kath. Kita St. Marien Startseite">
+          <img src="Logo.png" alt="Kath. Kita St. Marien Logo" class="logo-mark" data-image-field="logo" data-page="home" />
+          <span>Kath. Kita St. Marien</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Hauptnavigation">
+          <a href="#ueber-uns">Ãœber uns</a>
+          <a href="#programm">Programm</a>
+          <a href="raeumlichkeiten.html">RÃ¤umlichkeiten</a>
+          <a href="gruppen.html">Gruppen</a>
+          <a href="#team">Team</a>
+          <a href="ausschreibung.html">Ausschreibung</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+
+        <div class="editor-header">
+          <button id="login-trigger" class="cta cta-secondary small editor-toggle" type="button" title="Website bearbeiten" hidden>âœŽ</button>
+          <button id="logout-trigger" class="cta cta-primary small editor-toggle" type="button" title="Abmelden" hidden>âŽ‹</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="login-modal" class="login-modal" hidden>
+      <div class="login-card">
+        <div class="login-header">
+          <h3>Anmeldung</h3>
+          <button type="button" class="close-login" id="close-login-modal" aria-label="SchlieÃŸen">Ã—</button>
+        </div>
+        <form id="login-form">
+          <input id="login-email" type="email" placeholder="E-Mail" required />
+          <input id="login-password" type="password" placeholder="Passwort" required />
+          <button class="cta cta-primary" type="submit">Einloggen</button>
+        </form>
+        <div id="login-message" class="save-status"></div>
+      </div>
+    </div>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <div class="eyebrow" data-field="eyebrow_home" data-page="home">Kinderbetreuung mit Herz</div>
+            <h1 data-field="hero_title" data-page="home">Eine sichere, liebevolle KindertagesstÃ¤tte zum Wachsen.</h1>
+            <p data-field="hero_text" data-page="home">
+              Bei uns entdecken Kinder Spiel, Lernen und Gemeinschaft in einer warmen,
+              kindgerechten Umgebung. Wir begleiten jedes Kind mit Geduld, Aufmerksamkeit
+              und viel Freude â€“ damit es sich geborgen, inspiriert und selbststÃ¤ndig entwickeln kann.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#kontakt" class="cta cta-primary">Jetzt informieren</a>
+              <a href="#programm" class="cta cta-secondary">Mehr erfahren</a>
+            </div>
+
+            <div class="hero-pills" aria-label="Unsere Schwerpunkte">
+              <span class="pill" data-field="pill_1" data-page="home">Naturnahes Lernen</span>
+              <span class="pill" data-field="pill_2" data-page="home">Kreative Projekte</span>
+              <span class="pill" data-field="pill_3" data-page="home">Versuch macht Klug</span>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-label="Kinder spielen im Garten">
+            <div class="image-card">
+              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80" alt="Kinder spielen im Garten" data-image-field="hero_image" data-page="home" />
+              <input id="file-input-hero_image" class="image-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+            </div>
+            <div class="floating-note" data-field="hero_note" data-page="home">
+              <span>KindernÃ¤he & Aufmerksamkeit</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="ueber-uns">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow" data-field="why_eyebrow" data-page="home">Warum wir</div>
+              <h2 data-field="why_title" data-page="home">Kind sein heiÃŸt entdecken, staunen und ausprobieren.</h2>
+            </div>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <div class="icon peach">ðŸŒž</div>
+              <h3 data-field="card_title_1" data-page="home">VerlÃ¤ssliche Begleitung</h3>
+              <p data-field="card_text_1" data-page="home">Wir schaffen eine ruhige, liebevolle AtmosphÃ¤re, in der Kinder sich sicher fÃ¼hlen und ihren eigenen Weg finden.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon lavender">ðŸŽ¨</div>
+              <h3 data-field="card_title_2" data-page="home">Kreative Entfaltung</h3>
+              <p data-field="card_text_2" data-page="home">Durch Musik, Malen, Bewegung und Experimente fÃ¶rdern wir Fantasie, Ausdruck und Neugier.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon mint">ðŸŒ¿</div>
+              <h3 data-field="card_title_3" data-page="home">Naturnahe Umgebung</h3>
+              <p data-field="card_text_3" data-page="home">Gartenzeit, Bewegung im Freien und spielerische Naturerlebnisse stÃ¤rken Gesundheit und Lebensfreude.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container about">
+          <div class="about-content">
+            <div class="eyebrow" data-field="approach_eyebrow" data-page="home">Unser Ansatz</div>
+            <h2 data-field="approach_title" data-page="home">Die BedÃ¼rfnisse jedes einzelnen Kindes stehen im Mittelpunkt.</h2>
+            <ul class="checklist">
+              <li><span class="check">âœ“</span><span data-field="check_1" data-page="home">Individuelle FÃ¶rderung und liebevolle Begleitung</span></li>
+              <li><span class="check">âœ“</span><span data-field="check_2" data-page="home">StÃ¤rkung sozialer Kompetenzen und Teamgeist</span></li>
+              <li><span class="check">âœ“</span><span data-field="check_3" data-page="home">Kinderrechte, Respekt und einfÃ¼hlsame Kommunikation</span></li>
+              <li><span class="check">âœ“</span><span data-field="check_4" data-page="home">Spiel- und erfahrungsorientiertes Lernen</span></li>
+            </ul>
+          </div>
+
+          <div class="about-photo" aria-label="Kind in der TagesstÃ¤tte">
+            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" alt="Kind spielt und lernt in einer freundlichen Umgebung" data-image-field="about_image" data-page="home" />
+            <input id="file-input-about_image" class="image-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="programm">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow" data-field="program_eyebrow" data-page="home">Programm</div>
+              <h2 data-field="program_title" data-page="home">Tag fÃ¼r Tag entdecken und wachsen</h2>
+            </div>
+          </div>
+
+          <div class="program-grid">
+            <article class="program-item">
+              <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" alt="Kinder spielen miteinander" data-image-field="program_image_1" data-page="home" />
+              <input id="file-input-program_image_1" class="image-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+              <div class="program-content">
+                <h3 data-field="program_title_1" data-page="home">Spiel und Bewegung</h3>
+                <p data-field="program_text_1" data-page="home">Bewegungsabenteuer, Rollenspiele und gemeinsame Spiele fÃ¶rdern Selbstvertrauen und soziale FÃ¤higkeiten.</p>
+              </div>
+            </article>
+
+            <article class="program-item">
+              <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Kinder malen gemeinsam" data-image-field="program_image_2" data-page="home" />
+              <input id="file-input-program_image_2" class="image-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+              <div class="program-content">
+                <h3 data-field="program_title_2" data-page="home">KreativitÃ¤t erleben</h3>
+                <p data-field="program_text_2" data-page="home">Malen, basteln, singen und tanzen lassen Kinder Ideen lebendig werden und stÃ¤rken ihre AusdrucksfÃ¤higkeit.</p>
+              </div>
+            </article>
+
+            <article class="program-item">
+              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80" alt="Kinder im Freien" data-image-field="program_image_3" data-page="home" />
+              <input id="file-input-program_image_3" class="image-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+              <div class="program-content">
+                <h3 data-field="program_title_3" data-page="home">Garten und Natur</h3>
+                <p data-field="program_text_3" data-page="home">Im Freien entdecken Kinder Pflanzen, Tiere und Jahreszeiten â€“ ganz praktisch und mit viel Freude.</p>
+              </div>
+            </article>
+
+            <article class="program-item">
+              <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80" alt="Kinder lernen zusammen" data-image-field="program_image_4" data-page="home" />
+              <input id="file-input-program_image_4" class="image-upload" type="file" accept="image/png,image/jpeg,image/webp" />
+              <div class="program-content">
+                <h3 data-field="program_title_4" data-page="home">Erlebnisorientiert lernen</h3>
+                <p data-field="program_text_4" data-page="home">Wir verbinden Alltagserfahrungen mit einfachen Lernprozessen und stÃ¤rken so Ehrgeiz und Neugier.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="team">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow" data-field="team_eyebrow" data-page="home">Unser Team</div>
+              <h2 data-field="team_title" data-page="home">Menschen, die Kinder mit Ruhe und Begeisterung begleiten.</h2>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>70+</strong>
+              <span>Jahre Erfahrung</span>
+            </div>
+            <div class="stat">
+              <strong>140</strong>
+              <span>Kinder im Fokus</span>
+            </div>
+            <div class="stat">
+              <strong>9</strong>
+              <span>Gruppen</span>
+            </div>
+            <div class="stat">
+              <strong>28</strong>
+              <span>Erfahrene PÃ¤dagog:innen</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>EinfÃ¼hlsam & herzlich</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container testimonial-box">
+          <blockquote>
+            â€œUnsere Kinder kommen gern zur TagesstÃ¤tte. Sie fÃ¼hlen sich sicher, gehÃ¶rt und inspiriert â€“ genau so, wie wir uns das wÃ¼nschen.â€
+          </blockquote>
+          <div class="quote-author">â€” Elternfeedback</div>
+        </div>
+      </section>
+
+      <section class="section" id="kontakt">
+        <div class="container">
+          <div class="cta-banner">
+            <div>
+              <h3 data-field="contact_title" data-page="home">Wir freuen uns auf Ihren Besuch.</h3>
+              <p data-field="contact_text" data-page="home">Vereinbaren Sie gern ein Kennenlernen und entdecken Sie unsere Einrichtung.</p>
+            </div>
+            <a href="mailto:info@kath-kita-wedel.de" class="cta cta-secondary" data-field="contact_email" data-page="home">info@kath-kita-wedel.de</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>Â© 2026 Katholische KindertagesstÃ¤tte St. Marien</div>
+        <div>FeldstraÃŸe 10, 22880 Wedel</div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</html>
+
