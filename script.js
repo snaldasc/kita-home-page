@@ -650,7 +650,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     section.querySelectorAll(".job-box").forEach((card) => {
       if (card.dataset.boxWidth > 0) card.style.width = `${card.dataset.boxWidth}px`;
-      if (card.dataset.boxHeight > 0) card.style.minHeight = `${card.dataset.boxHeight}px`;
+      card.style.minHeight = "";
       bindJobBoxReorderDrag(card, card);
       bindJobBoxResize(card.querySelector(".job-box-resize-handle"), card);
       const imageFrame = card.querySelector(".job-box-image");
@@ -729,7 +729,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     box.imageX = Number(card.dataset.imageX) || 0;
     box.imageY = Number(card.dataset.imageY) || 0;
     box.width = Number(card.dataset.boxWidth) || 0;
-    box.height = Number(card.dataset.boxHeight) || 0;
+    box.height = 0;
     box.flowOffset = 0;
     box.flowX = Number(card.dataset.flowX) || 0;
     box.flowY = Number(card.dataset.flowY) || 0;
@@ -995,6 +995,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const getFlowSections = () => [...document.querySelectorAll("main section")];
 
+  const ensureFlowSectionAnchors = () => {
+    getFlowSections().forEach((section, index) => {
+      if (!section.dataset.flowAnchor) section.dataset.flowAnchor = `flow-section-${index}`;
+    });
+  };
+
   const getFlowAnchor = () => {
     const sections = getFlowSections();
     const viewportCenter = window.scrollY + window.innerHeight / 2;
@@ -1068,7 +1074,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const floatingBoxMarkup = (box) => `
-    <article class="floating-box ${Number(box.layer || 1) <= 1 ? "floating-base-box" : "floating-overlay-box"}${box.baseLocked ? " floating-base-locked" : ""}${box.image && !box.title && !box.text && !(box.lines || []).length ? " floating-image-only" : ""}${box.imageVisible === false ? " image-disabled" : ""}" data-floating-key="${escapeHtml(box.key)}" data-left="${box.left || 16}" data-top="${box.top || 16}" data-layer="${box.layer || (contentPage === "jobs" ? 2 : 1)}" data-base-locked="${box.baseLocked === true}" data-background-color="${safeBoxColor(box.backgroundColor)}" data-border-radius="${box.borderRadius ?? 3}" data-flow-anchor="${escapeHtml(box.flowAnchor || "")}" data-flow-offset="${box.flowOffset || 0}" data-flow-x="${box.flowX || 0}" data-flow-y="${box.flowY || 0}" data-image-visible="${box.imageVisible !== false}" data-image-scale="${box.imageScale || 100}" data-image-x="${box.imageX || 0}" data-image-y="${box.imageY || 0}" data-box-width="${box.width || 0}" data-box-height="${box.height || 0}" style="left:${box.left || 16}px;top:${box.top || 16}px;z-index:${box.layer || (contentPage === "jobs" ? 2 : 1)};border-radius:${box.borderRadius ?? 3}px${box.baseLocked && box.flowX || box.flowY ? `;transform:translate(${box.flowX || 0}px,${box.flowY || 0}px)` : ""}${box.width ? `;width:${box.width}px` : ""}${box.height ? `;min-height:${box.height}px` : ""}${safeBoxColor(box.backgroundColor) ? `;background-color:${safeBoxColor(box.backgroundColor)}` : ""}">
+    <article class="floating-box ${Number(box.layer || 1) <= 1 ? "floating-base-box" : "floating-overlay-box"}${box.baseLocked ? " floating-base-locked" : ""}${box.image && !box.title && !box.text && !(box.lines || []).length ? " floating-image-only" : ""}${box.imageVisible === false ? " image-disabled" : ""}" data-floating-key="${escapeHtml(box.key)}" data-left="${box.left || 16}" data-top="${box.top || 16}" data-layer="${box.layer || (contentPage === "jobs" ? 2 : 1)}" data-base-locked="${box.baseLocked === true}" data-background-color="${safeBoxColor(box.backgroundColor)}" data-border-radius="${box.borderRadius ?? 3}" data-flow-anchor="${escapeHtml(box.flowAnchor || "")}" data-flow-offset="${box.flowOffset || 0}" data-flow-x="${box.flowX || 0}" data-flow-y="${box.flowY || 0}" data-image-visible="${box.imageVisible !== false}" data-image-scale="${box.imageScale || 100}" data-image-x="${box.imageX || 0}" data-image-y="${box.imageY || 0}" data-box-width="${box.width || 0}" data-box-height="${box.height || 0}" style="left:${box.left || 16}px;top:${box.top || 16}px;z-index:${box.layer || (contentPage === "jobs" ? 2 : 1)};border-radius:${box.borderRadius ?? 3}px${box.baseLocked && box.flowX || box.flowY ? `;transform:translate(${box.flowX || 0}px,${box.flowY || 0}px)` : ""}${box.width ? `;width:${box.width}px` : ""}${safeBoxColor(box.backgroundColor) ? `;background-color:${safeBoxColor(box.backgroundColor)}` : ""}">
       <button class="floating-box-delete" type="button" aria-label="Kasten löschen">×</button>
       <div class="floating-box-image${box.imageVisible === false ? " is-hidden" : ""}">${box.image ? `<img src="${escapeHtml(box.image)}" alt="" draggable="false" data-floating-image />` : ""}</div>
       <h3 data-floating-field="title" data-placeholder="Überschrift" contenteditable="false" style="font-size:${escapeHtml(box.titleFontSize || "")};font-weight:${escapeHtml(box.titleFontWeight || "")};font-style:${escapeHtml(box.titleFontStyle || "")};">${escapeHtml(box.title)}</h3>
@@ -1099,6 +1105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const renderFloatingBoxes = (entries) => {
     ensureFloatingBoxUI();
+    ensureFlowSectionAnchors();
     const layer = document.getElementById("floating-box-layer");
     const baseLayer = document.getElementById("floating-base-layer");
     floatingBoxEntries = entries.filter((entry) => (!entry.page || entry.page === contentPage) && entry.key.startsWith("floating_box_")).map((entry) => {
@@ -1135,7 +1142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll(".floating-box").forEach((card) => {
       const box = floatingBoxEntries.find((entry) => entry.key === card.dataset.floatingKey);
       if (card.dataset.boxWidth > 0) card.style.width = `${card.dataset.boxWidth}px`;
-      if (card.dataset.boxHeight > 0) card.style.minHeight = `${card.dataset.boxHeight}px`;
+      card.style.minHeight = "";
       card.querySelectorAll("[data-floating-field]").forEach((field) => {
         field.contentEditable = hasEditAccess() ? "true" : "false";
         field.addEventListener("blur", () => saveFloatingBox(card));
@@ -1201,6 +1208,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     card.addEventListener("pointerdown", (event) => {
       const imageOnly = card.classList.contains("floating-image-only");
       const isMoveHandle = event.target.closest(".floating-box-move-handle");
+      const eventBox = event.target.closest(".floating-box");
+      if (eventBox !== card) return;
+      if (!isMoveHandle && event.target.closest("[contenteditable=\"true\"]")) return;
       if (!hasEditAccess() || event.target.closest(".floating-box-tools, .floating-box-delete, input") || (!isMoveHandle && event.target.closest("button")) || (!imageOnly && event.target.closest(".floating-box-image"))) return;
       if (!event.target.closest("[contenteditable=\"true\"]")) event.preventDefault();
       card.setPointerCapture(event.pointerId);
@@ -1295,7 +1305,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     box.imageY = Number(card.dataset.imageY) || 0;
     box.imageVisible = card.dataset.imageVisible !== "false";
     box.width = Number(card.dataset.boxWidth) || 0;
-    box.height = Number(card.dataset.boxHeight) || 0;
+    box.height = 0;
     box.backgroundColor = safeBoxColor(card.dataset.backgroundColor || card.style.backgroundColor);
     box.borderRadius = Math.max(0, Math.min(40, Number(card.dataset.borderRadius) || 0));
     box.baseLocked = box.baseLocked === true || card.dataset.baseLocked === "true";
